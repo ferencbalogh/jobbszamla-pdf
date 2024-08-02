@@ -21,9 +21,4 @@ jobs:
           export_default_credentials: true # Ez exportálja a hitelesítési adatokat a környezetbe
 
       - name: Deploy Cloud Function
-        run: |
-          gcloud functions deploy generatePdfFromUrl \ # A helyes függvénynév
-            --runtime nodejs18 \
-            --trigger-http \
-            --source . \
-            --allow-unauthenticated # Ez lehetővé teszi a függvény hívását hitelesítés nélkül (opcionális)
+        run: gcloud functions deploy pdf_api --runtime nodejs18 --trigger-http --source . --allow-unauthenticated
