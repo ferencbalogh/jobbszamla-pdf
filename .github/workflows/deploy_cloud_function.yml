@@ -1,0 +1,27 @@
+name: Deploy Cloud Function
+
+on:
+  push:
+    branches:
+      - main # Vagy a kívánt branch neve
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: jobbszamla # A Google Cloud projekted azonosítója
+          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JOBBSZAMLAZO }} # A titkosított service account kulcs
+
+      - name: Deploy Cloud Function
+        run: |
+          gcloud functions deploy generatepdf \
+            --runtime nodejs18 \
+            --trigger-http \
+            --source . # Feltételezzük, hogy az index.js és package.json a repository gyökerében van
