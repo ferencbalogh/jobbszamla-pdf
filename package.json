@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "express": "^4.19.2",
-    "puppeteer": "^22.15.0"
+    "puppeteer": "^22.15.0",
+    "valid-url": "^1.0.9"
   }
 }
